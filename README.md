@@ -9,3 +9,19 @@ This file records the commands to make python 3 working for MacBook Air and gett
 ##3. How to upgrade pip? (Getting error while running pip command - pip is not recognized)
 ##python -m pip install --upgrade pip
 ##4.Install lxml
+
+###Getting xpaths from xml
+
+>>>root = ET.fromstring(s)
+>>> import xml.etree.ElementTree as ET
+>>> def parseXML(root,sm):
+    sm = sm + "/" + root.tag[root.tag.rfind('}')+1:]
+    for child in root:
+      parseXML(child,sm)
+    if len(list(root)) == 0:
+      print(sm)
+
+f = "/Users/sarabjeetkaur/Downloads/quoteXml44.xml"
+>>> tree = ET.parse(f)
+>>> root = tree.getroot()
+>>> parseXML(root,"")
